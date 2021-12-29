@@ -2,7 +2,7 @@ package com.company;
 
 public class AVLTree {
 
-
+    
     private class AVLNode {
         private int value;
         private int height;
@@ -33,6 +33,8 @@ public class AVLTree {
     setHight(root);
     return balance(root);
     }
+    
+    
     private AVLNode balance (AVLNode root){
         if (isLeftHeavy(root)){
             if (balanceFactor(root.leftChild)<0)
@@ -46,6 +48,8 @@ public class AVLTree {
         }
         return root;
     }
+    
+    
     private AVLNode rotateLeft(AVLNode root){
         var newRoot = root.rightChild;
         root.rightChild = newRoot.leftChild;
@@ -54,6 +58,8 @@ public class AVLTree {
         setHight(newRoot);
         return newRoot;
     }
+    
+    
     private AVLNode rotateRight(AVLNode root){
         var newRoot = root.leftChild;
         root.leftChild = newRoot.rightChild;
@@ -62,20 +68,30 @@ public class AVLTree {
         setHight(newRoot);
         return newRoot;
     }
+    
+    
     private void setHight(AVLNode node){
         node.height = Math.max(
                 height(node.leftChild),
                 height(node.rightChild)) +1;
     }
+    
+    
     private boolean isLeftHeavy(AVLNode node){
         return balanceFactor(node) > 1;
     }
+    
+    
     private boolean isRightHeavy(AVLNode node){
         return balanceFactor(node) < -1;
     }
+    
+    
     private int balanceFactor(AVLNode node){
         return (node == null) ? 0 : height(node.leftChild) - height(node.rightChild);
     }
+    
+    
     private int height (AVLNode node){
         return (node == null) ? -1 : node.height;
     }
